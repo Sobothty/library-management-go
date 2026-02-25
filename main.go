@@ -6,6 +6,7 @@ import (
 	"Go-Project/feature/Repository"
 	"Go-Project/feature/Routes"
 	"Go-Project/feature/Service"
+	"Go-Project/feature/middleware"
 	"log"
 	"net/http"
 )
@@ -19,8 +20,12 @@ func main() {
 
 	router := Routes.NewRoutes(controller)
 
+	// Start Server
 	mux := http.NewServeMux()
 	router.RoutesEndpoint(mux)
 
-	log.Fatal(http.ListenAndServe(":8080", mux))
+	//Add Middleware
+	handler := middleware.LoggingMiddleware(middleware.JsonMiddleware(mux))
+
+	log.Fatal(http.ListenAndServe(":8080", handler))
 }

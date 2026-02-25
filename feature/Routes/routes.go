@@ -15,10 +15,10 @@ func NewRoutes(Controller *Controller.BookController) *Routes {
 
 func (r *Routes) RoutesEndpoint(app *http.ServeMux) {
 	//Book Endpoint
-	app.HandleFunc("/books", r.controller.GetAllBook)
-	app.HandleFunc("/book/{id}", r.controller.GetBookById)
-	app.HandleFunc("/books/add", r.controller.AddBook)
-	app.HandleFunc("/books/delete", r.controller.DeleteBook)
-	app.HandleFunc("/books/borrow", r.controller.BorrowBook)
-	app.HandleFunc("/books/return", r.controller.ReturnBook)
+	app.HandleFunc("GET /books", r.controller.GetAllBook)
+	app.HandleFunc("GET /book/{id}", r.controller.GetBookById)
+	app.HandleFunc("ADD /books/add", r.controller.AddBook)
+	app.HandleFunc("DELETE /books/delete", r.controller.DeleteBook)
+	app.HandleFunc("POST /books/borrow", r.controller.BorrowBook)
+	app.HandleFunc("POST /books/return", r.controller.ReturnBook)
 }
